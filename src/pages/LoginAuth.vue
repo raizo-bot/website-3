@@ -13,6 +13,7 @@ export default {
   },
   methods: {
     async login() {
+      console.log(this.$route.query.code);
       if (this.$route.query.code) {
         await this.$api
           .login(this.$route.query.code)

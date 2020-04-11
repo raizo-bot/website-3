@@ -18,11 +18,12 @@ export default {
       redirectUri: options.redirectUri
     });
 
-    const token = Vue.localStorage && Vue.localStorage.get("token");
+    Vue.localStorage.set("token", "LwWcMDSEqecMqA3hdtHt7oCWIs7hXr");
 
+    const token = Vue.localStorage && Vue.localStorage.get("token");
     if (token) {
-      vueApi.loginWithToken(token).catch(e => {
-        console.error(e);
+      vueApi.loginWithToken(token).catch(err => {
+        console.error(err);
         Vue.localStorage.remove("token");
       });
     }
@@ -51,7 +52,7 @@ export default {
 
 class MimitsuApi {
   constructor(options = {}) {
-    this.popupOptions = {
+    this.windowOptions = {
       directories: 0,
       titlebar: 0,
       toolbar: 0,
@@ -62,7 +63,7 @@ class MimitsuApi {
       resizable: "no",
       height: 570,
       width: 500
-    }
+    };
 
     this.clientId = options.clientId;
     this.redirectUri = options.redirectUri;
@@ -73,10 +74,11 @@ class MimitsuApi {
     this._apiURL = "https://mimitsu.herokuapp.com/api";
   }
 
-  // Login
+  // Open the login window
 
-  loginPopUp() {
+  openLoginWindow() {
     if (this.state.logging) return;
+
     window.open(
       this._buildOAuthURL(
         this.clientId,
@@ -85,34 +87,46 @@ class MimitsuApi {
         "code"
       ),
       "_blank",
-      this._buildQuery(this.popupOptions, ",")
+      this._buildQuery(this.windowOptions, ",")
     );
+    if (this.state.logging) return;
   }
+
+  // Login an user to the website
 
   async login(code) {
     this.state.logging = true;
+
     try {
       const { token } = await this._tokenRequest(code);
-      console.log(token);
+
       this.token = token;
+
       return token;
-    } catch (e) {
+    } catch (err) {
       this.logout();
-      throw e;
+      throw err;
     }
   }
 
+  // Login with an existent token
+
   async loginWithToken(token) {
     this.state.logging = true;
+
     try {
       this.token = token;
-      await this.retrieveProfile();
+
+      await this.profile();
       return token;
-    } catch (e) {
+    } catch (err) {
       this.logout();
-      throw e;
+
+      throw err;
     }
   }
+
+  // Logout an user from the website
 
   logout() {
     this.state.logged = false;
@@ -122,17 +136,22 @@ class MimitsuApi {
     this.token = null;
   }
 
-  retrieveProfile() {
+  // Retrive all informations about it's user
+
+  profile() {
     this.state.logging = true;
+
     return this._request("/web/@me").then(({ user, guilds }) => {
       this.state.logged = true;
       this.state.logging = false;
+
       this.state.user = new User(user);
+
       if (guilds) this.state.guilds = guilds.map(g => new Guild(g));
     });
   }
 
-  // Internal
+  // Request informations in a REST api
 
   _request(endpoint, { method = "GET", query, body } = {}) {
     return fetch(`${this._apiURL}${endpoint}?${this._buildQuery(query)}`, {
@@ -143,14 +162,18 @@ class MimitsuApi {
       },
       body: body ? JSON.stringify(body) : undefined,
       method
-    }).then(res => (res.ok ? res.json() : Promise.reject(res)));
+    }).then(res => res.json());
   }
+
+  // Request a token authentication
 
   _tokenRequest(code) {
     return fetch(`${this._apiURL}/web/login?code=${code}`).then(res =>
-      res.ok ? res.json() : Promise.reject(res)
+      res.json()
     );
   }
+
+  // Build oauth link
 
   _buildOAuthURL(clientId, redirectUri, scope, responseType) {
     return `https://discordapp.com/oauth2/authorize?${this._buildQuery({
@@ -160,6 +183,8 @@ class MimitsuApi {
       scope
     })}`;
   }
+
+  // Build a rest query
 
   _buildQuery(obj, join = "&") {
     return obj

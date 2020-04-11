@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
+import Buefy from "buefy";
 import LocalStorage from "vue-localstorage";
 import Head from "vue-head";
-import Buefy from "buefy";
 import VueProgressBar from "vue-progressbar";
 
 import MimitsuApi from "../api/MimitsuApi";
@@ -17,6 +17,11 @@ Vue.use(LocalStorage);
 Vue.use(Head, { separator: "|", complement: "Mimitsu" });
 Vue.use(Router);
 
+Vue.use(MimitsuApi, {
+  clientId: "672591094953017374",
+  redirectUri: "http://localhost:8080/auth"
+});
+
 Vue.use(VueProgressBar, {
   color: "#7957d5",
   failedColor: "#ff3860",
@@ -24,11 +29,6 @@ Vue.use(VueProgressBar, {
     speed: "0.2s",
     opacity: "0.1s"
   }
-});
-
-Vue.use(MimitsuApi, {
-  clientId: "672591094953017374",
-  redirectUri: "http://localhost:8080/auth"
 });
 
 export default new Router({
