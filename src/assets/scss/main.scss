@@ -1,0 +1,25 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// Website variables
+@import "_variables";
+
+// Website elements / components
+@import "_navbar";
+@import "_homepage";
+
+// Import Bulma and Buefy styles and custom font
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap");
+@import url("https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css");
+@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
+
+// Global Variables
+.round {
+  border-radius: 100%;
+}
+
+// Bulma
+@import "~bulma";
+
+// Buefy
+@import "~buefy/src/scss/buefy";
