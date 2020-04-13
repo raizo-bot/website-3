@@ -13,7 +13,8 @@ module.exports = {
   },
   devServer: {
     quiet: true,
-    port: 8080,
+    port: process.env.PORT || 8080,
+    host: process.env.HOST || "localhost",
     hot: true,
     open: true,
     historyApiFallback: true
@@ -53,7 +54,7 @@ module.exports = {
     new HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
     new HTMLWebpackPlugin({
-      favicon: join(__dirname, "src", "static", "logo.png"),
+      favicon: join(__dirname, "static", "logo.png"),
       filename: "index.html",
       template: "index.html",
       inject: true
