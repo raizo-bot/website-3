@@ -2,10 +2,10 @@
   <div id="app">
     <section class="main-container">
       <Navbar />
-      <vue-progress-bar></vue-progress-bar>
 
       <router-view />
       <Footer />
+      <vue-progress-bar></vue-progress-bar>
     </section>
   </div>
 </template>
@@ -29,11 +29,18 @@ export default {
       this.$Progress.finish();
     },
     created() {
-      this.$Progress.start();
+      this.$Progress.start(); 
+
       this.$router.beforeEach((to, from, next) => {
+        if (to.meta.progress !== undefined) {
+          const meta = to.meta.progress;
+          this.$Progress.parseMeta(meta);
+        }
+
         this.$Progress.start();
         next();
       });
+
       this.$router.afterEach((to, from) => {
         this.$Progress.finish();
       });

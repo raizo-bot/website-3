@@ -18,8 +18,6 @@ export default {
       redirectUri: options.redirectUri
     });
 
-    Vue.localStorage.set("token", "LwWcMDSEqecMqA3hdtHt7oCWIs7hXr");
-
     const token = Vue.localStorage && Vue.localStorage.get("token");
     if (token) {
       vueApi.loginWithToken(token).catch(err => {
@@ -37,8 +35,8 @@ export default {
           !this.$api.state.logging
         ) {
           this.$router.push("/");
-          return this.$toast.open({
-            message: "Authentication is required!",
+          return this.$buefy.toast.open({
+            message: "You must login in order to access this content",
             type: "is-danger"
           });
         }
@@ -74,6 +72,30 @@ class MimitsuApi {
     this._apiURL = "https://mimitsu.herokuapp.com/api";
   }
 
+  // Bot statistics
+
+  botStatistics() {
+    return this._request("/bot/statistics");
+  }
+
+  // Modules
+
+  getModule(mod, guild, defaultValue = "") {
+    return this._request(
+      `/modules/${guild.id}/${mod}?defaultValue=${defaultValue}`
+    );
+  }
+
+  // Open an link to invite the bot to the designed guild
+
+  openInvite(guild) {
+    window.open(
+      `https://discordapp.com/api/oauth2/authorize?client_id=${this.clientId}&permissions=19456&scope=bot&guild_id=${guild.id}`,
+      "_blank",
+      this._buildQuery(this.windowOptions, ",")
+    );
+  }
+
   // Open the login window
 
   openLoginWindow() {
@@ -89,7 +111,6 @@ class MimitsuApi {
       "_blank",
       this._buildQuery(this.windowOptions, ",")
     );
-    if (this.state.logging) return;
   }
 
   // Login an user to the website

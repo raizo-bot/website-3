@@ -1,3 +1,13 @@
+.dash-flex {
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.bigbig {
+  font-size: 8vh;
+}
+
 .home {
   .hero.is-fullheight {
     min-height: calc(100vh - #{$navbar-height});

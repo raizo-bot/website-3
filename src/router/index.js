@@ -7,14 +7,18 @@ import VueProgressBar from "vue-progressbar";
 
 import MimitsuApi from "../api/MimitsuApi";
 
-import Homepage from "../pages/Homepage.vue";
+import Home from "../pages/Home.vue";
 import NotFound from "../pages/NotFound.vue";
 import Auth from "../pages/LoginAuth.vue";
+
+// Dashboard
+import SelectServer from "../pages/SelectServer.vue";
+import Dashboard from "../pages/Dashboard.vue";
 
 Vue.use(Buefy, { defaultTooltipAnimated: true, defaultToastDuration: 3000 });
 
 Vue.use(LocalStorage);
-Vue.use(Head, { separator: "|", complement: "Mimitsu" });
+Vue.use(Head, { separator: "—", complement: "Mimitsu" });
 Vue.use(Router);
 
 Vue.use(MimitsuApi, {
@@ -42,12 +46,24 @@ export default new Router({
     {
       path: "/",
       name: "Home",
-      component: Homepage
+      component: Home
     },
     {
       path: "/auth",
       name: "Authentication",
       component: Auth
+    },
+    {
+      path: "/dashboard",
+      name: "Select a Server",
+      component: SelectServer,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: "/dashboard/:id",
+      name: "Dashboard",
+      component: Dashboard,
+      meta: { requiresAuth: true }
     }
   ]
 });

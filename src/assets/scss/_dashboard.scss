@@ -1,0 +1,49 @@
+.header-body {
+  padding-bottom: 1.5rem;
+}
+
+.fill-flex {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.modal .animation-content .modal-card {
+  overflow: visible !important;
+}
+
+.modal-card-body {
+  overflow: visible !important;
+}
+
+.dashboard-container .tab-content {
+  flex: 1;
+}
+
+.dashboard-container .b-tabs .tabs {
+  background-color: #7957d5 !important;
+}
+
+.dashboard-container .tabs ul,
+.dashboard-container .tabs li a {
+  border-bottom-color: #7957d5;
+}
+
+.dashboard-container .tabs li.is-active a {
+  border-bottom-color: white;
+}
+
+.dashboard-container .tabs li.is-active a,
+.dashboard-container .tabs a:hover {
+  color: white;
+}
+
+.dashboard-container .tab-content {
+  padding: 1.5rem !important;
+}

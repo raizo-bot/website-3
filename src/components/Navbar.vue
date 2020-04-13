@@ -1,5 +1,9 @@
 <template>
-  <nav class="navbar is-transparent is-unselectable" role="navigation" aria-label="main navigation">
+  <nav
+    class="navbar docs-navbar is-spaced has-shadow is-primary is-transparent"
+    role="navigation"
+    aria-label="main navigation"
+  >
     <div class="container">
       <div class="navbar-brand">
         <router-link to="/" class="navbar-item">MIMITSU</router-link>
@@ -33,7 +37,7 @@
         <div class="navbar-end">
           <div v-if="!!discord.user" class="navbar-item has-dropdown" ref="navDropdown">
             <div class="navbar-link is-flex" v-on:click="dropdown">
-              <figure class="image is-24x24 user-pic">
+              <figure class="image is-32x32 user-pic">
                 <img draggable="false" class="round" :src="discord.user.displayAvatarURL" />
               </figure>
               <span>{{ discord.user.username }}</span>
