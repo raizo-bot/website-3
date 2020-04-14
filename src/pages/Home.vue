@@ -10,8 +10,7 @@
             />
           </div>
           <h1 class="subtitle home-hero">
-            Mimitsu, a focused
-            <strong>RPG</strong> discord bot
+            Mimitsu, a focused <strong>RPG</strong> discord bot
           </h1>
 
           <div class="buttons">
@@ -27,29 +26,6 @@
         </div>
       </div>
     </div>
-    <div class="dash-flex">
-      <nav class="level" v-if="botStats">
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading">Users</p>
-            <p class="title">{{ botStats.users }}</p>
-          </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading">Channels</p>
-            <p class="title">{{ botStats.channels }}</p>
-          </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading">Guilds</p>
-            <p class="title">{{ botStats.guilds }}</p>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <!--<b-loading :active="!botStats" />-->
   </section>
 </template>
 
@@ -57,18 +33,5 @@
 export default {
   name: "Home",
   head: { title: { inner: "Home" } },
-  data() {
-    return {
-      botStats: null
-    };
-  },
-  mounted() {
-    this.updateStats();
-  },
-  methods: {
-    async updateStats() {
-      this.botStats = await this.$api.botStatistics();
-    }
-  }
 };
 </script>

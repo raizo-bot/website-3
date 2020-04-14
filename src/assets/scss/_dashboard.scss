@@ -2,6 +2,10 @@
   padding-bottom: 1.5rem;
 }
 
+.language {
+  color: white;
+}
+
 .fill-flex {
   display: flex;
   flex-direction: column;
@@ -26,14 +30,6 @@
   flex: 1;
 }
 
-.dashboard-container .b-tabs .tabs {
-  background-color: #7957d5 !important;
-}
-
-.dashboard-container .tabs ul,
-.dashboard-container .tabs li a {
-  border-bottom-color: #7957d5;
-}
 
 .dashboard-container .tabs li.is-active a {
   border-bottom-color: white;

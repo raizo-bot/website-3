@@ -5,13 +5,13 @@
         <b-input
           maxlength="10"
           v-model="prefix"
-          required
           placeholder="Prefix used to execute commands. Ex.: m!"
+          required
         ></b-input>
       </b-field>
 
       <small>
-        <strong>Language</strong>
+        <strong class="language">Language</strong>
       </small>
 
       <br />
@@ -21,7 +21,7 @@
     </div>
 
     <footer class="modal-card-foot module-card-footer">
-      <b-button type="is-primary" :loading="saving" @click="save()">Save</b-button>
+      <b-button size="is-medium" type="is-primary" :loading="saving" @click="save()">Save</b-button>
     </footer>
   </section>
 </template>
@@ -41,7 +41,6 @@ export default {
   async mounted() {
     const prefix = await this.$api.getModule("prefix", this.guild, "m!");
 
-    console.log(prefix);
     this.prefix = prefix;
   },
   methods: {

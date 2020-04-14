@@ -1,3 +1,69 @@
 .is-right {
   float: right;
 }
+
+// Colors
+$greyple: #99AAB5;
+$greyple-invert: findColorInvert($greyple);
+$dark-but-not-black: #2C2F33;
+$dark-but-not-black-invert: findColorInvert($dark-but-not-black);
+$not-quite-black: #23272A;
+$not-quite-black-invert: findColorInvert($not-quite-black);
+$light-gray-but-not-so-light: #484B52;
+$background-color: #18191c;
+$background-invert: $white;
+
+$colors: (
+    "background": ($background-color, $background-invert)
+);
+
+$text: $white;
+$text-light: #ddd;
+$text-strong: $primary;
+$title-color: $text;
+$subtitle-color: $text;
+$subtitle-strong-color: $text;
+$label-color: $text;
+
+// Body
+$body-background-color: $background-color;
+$background: $background-color;
+
+// Navbar
+$navbar-background-color: $background;
+$navbar-item-hover-background-color: $not-quite-black;
+$navbar-item-active-background-color: $not-quite-black;
+$navbar-item-color: $white;
+
+$navbar-dropdown-background-color: $not-quite-black;
+$navbar-dropdown-item-active-background-color: $not-quite-black;
+$navbar-dropdown-item-hover-color: $link;
+$navbar-dropdown-item-color: $white;
+$navbar-divider-background-color: $dark-but-not-black;
+
+// Footer
+$footer-background-color: $dark-but-not-black;
+
+// Buttons
+$button-background-color: $primary;
+$button-color: $primary-invert;
+$button-border-color: $button-background-color;
+$button-hover-border-color: lighten($button-background-color, 10%);
+
+// Input
+$input-background-color: $light-gray-but-not-so-light;
+$input-disabled-background-color: $dark;
+
+$input-color: $white;
+$input-hover-color: $white;
+$input-focus-color: $white;
+$input-border-color: $light-gray-but-not-so-light;
+$input-arrow: $white;
+
+// Dropdown
+$dropdown-item-color: $white;
+$dropdown-content-background-color: $light-gray-but-not-so-light;
+$dropdown-item-hover-color: $primary;
+$dropdown-item-hover-background-color: $light-gray-but-not-so-light;
+$dropdown-item-active-color: $primary;
+$dropdown-item-active-background-color: $light-gray-but-not-so-light;

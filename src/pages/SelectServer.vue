@@ -7,11 +7,11 @@
 
       <div v-for="guild in paginatedItems" :key="guild.id">
         <router-link v-if="guild.common" :to="`/dashboard/${guild.id}`">
-          <b-button type="is-primary" class="is-right" size="is-medium" rounded>Go to Dashboard</b-button>
+          <b-button type="is-primary" class="is-right" size="is-medium" rounded>Manage Guild</b-button>
         </router-link>
 
         <a v-else @click="openInvite(guild)">
-          <b-button type="is-primary" class="is-right" size="is-medium" rounded>Invite to Discord</b-button>
+          <b-button type="is-primary" class="is-right" size="is-medium" rounded>Invite Mimitsu</b-button>
         </a>
 
         <GuildIcon :guild="guild" />
@@ -31,22 +31,7 @@
         rounded
       ></b-pagination>
     </div>
-    <!--
-    <div class="container has-text-centered">
-      <h1 class="title is-spaced">Servers</h1>
-      <div class="columns is-multiline is-centered">
-        <div v-for="guild in guilds" :key="guild.id" class="column is-2 has-text-centered">
-          <router-link v-if="guild.common" :to="`/dashboard/${guild.id}`">
-            <GuildIcon :guild="guild" />
-          </router-link>
-          <a v-else class="not-common-guild" @vclick="openInvite(guild)">
-            <GuildIcon :guild="guild" />
-          </a>
-        </div>
-        <span v-if="guilds.length === 0" class="error">Couldn't find any manageable server :(</span>
-      </div>
-    </div>
-    <b-loading :active="!guilds" />-->
+    <b-loading :active="!guilds" />
   </section>
 </template>
 

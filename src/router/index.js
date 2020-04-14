@@ -17,6 +17,15 @@ import Dashboard from "../pages/Dashboard.vue";
 
 Vue.use(Buefy, { defaultTooltipAnimated: true, defaultToastDuration: 3000 });
 
+Vue.use(VueProgressBar, {
+  color: "#c696e2",
+  failedColor: "#ff3860",
+  transition: {
+    speed: "0.2s",
+    opacity: "0.1s"
+  }
+});
+
 Vue.use(LocalStorage);
 Vue.use(Head, { separator: "—", complement: "Mimitsu" });
 Vue.use(Router);
@@ -24,15 +33,6 @@ Vue.use(Router);
 Vue.use(MimitsuApi, {
   clientId: "672591094953017374",
   redirectUri: "http://localhost:8080/auth"
-});
-
-Vue.use(VueProgressBar, {
-  color: "#7957d5",
-  failedColor: "#ff3860",
-  transition: {
-    speed: "0.2s",
-    opacity: "0.1s"
-  }
 });
 
 export default new Router({

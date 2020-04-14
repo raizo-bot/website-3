@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <section class="main-container">
+      <vue-progress-bar/>
       <Navbar />
 
       <router-view />
       <Footer />
-      <vue-progress-bar></vue-progress-bar>
     </section>
   </div>
 </template>
@@ -24,28 +24,19 @@ export default {
       { n: "viewport", c: "width=device-width, initial-scale=1" }
     ]
   },
-  methods: {
-    mounted() {
-      this.$Progress.finish();
-    },
-    created() {
-      this.$Progress.start(); 
-
-      this.$router.beforeEach((to, from, next) => {
-        if (to.meta.progress !== undefined) {
-          const meta = to.meta.progress;
-          this.$Progress.parseMeta(meta);
-        }
-
-        this.$Progress.start();
-        next();
-      });
-
-      this.$router.afterEach((to, from) => {
-        this.$Progress.finish();
-      });
-    }
-  }
+  mounted() {
+    this.$Progress.finish();
+  },
+  created() {
+    this.$Progress.start()
+    this.$router.beforeEach((to, from, next) => {
+        this.$Progress.start()
+        next()
+    })
+    this.$router.afterEach((to, from) => {
+        this.$Progress.finish()
+    })
+  },
 };
 </script>
 
