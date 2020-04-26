@@ -1,6 +1,6 @@
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-const { join } = require("path");
+const { join, resolve } = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 const { HotModuleReplacementPlugin } = require("webpack");
 
@@ -8,8 +8,9 @@ module.exports = {
   mode: "development",
   entry: join(__dirname, "src", "main.js"),
   output: {
-    path: join(__dirname, "build"),
-    filename: "app.bundled.js"
+    path: resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: "build.js"
   },
   devServer: {
     quiet: true,
