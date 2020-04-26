@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress",
-    "build": "node build/build.js"
+    "build": "webpack --progress --hide-modules"
   },
   "dependencies": {
     "buefy": "^0.8.15",
