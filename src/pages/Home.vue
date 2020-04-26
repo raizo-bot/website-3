@@ -10,7 +10,7 @@
             />
           </div>
           <h1 class="subtitle home-hero">
-            Mimitsu, a focused <strong>RPG</strong> discord bot
+            Mimitsu, a focused <strong>RPG</strong> discord bot 
           </h1>
 
           <div class="buttons">

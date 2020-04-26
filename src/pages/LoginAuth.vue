@@ -17,7 +17,7 @@ export default {
         await this.$api
           .login(this.$route.query.code)
           .then(token => {
-            this.$localStorage.set("token", token);
+            this.$cookies.set("token", token);
           })
           .catch(e =>
             opener && opener.window

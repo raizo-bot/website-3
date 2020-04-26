@@ -18,11 +18,12 @@ export default {
       redirectUri: options.redirectUri
     });
 
-    const token = Vue.localStorage && Vue.localStorage.get("token");
+    const token = Vue.$cookies && Vue.$cookies.get("token");
+
     if (token) {
       vueApi.loginWithToken(token).catch(err => {
         console.error(err);
-        Vue.localStorage.remove("token");
+        Vue.$cookies.remove("token");
       });
     }
 
